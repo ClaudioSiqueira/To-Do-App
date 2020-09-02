@@ -1,4 +1,4 @@
-const db_config = require('./db_config.json')
+const db_config = require('../../db_config.json')
 var knex = require('knex')({
     client: 'mysql2',
     connection: {
