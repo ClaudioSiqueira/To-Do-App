@@ -9,9 +9,9 @@ const database = require('../database/database')
 router.get('/tasks', async (req, res) =>{
     try{
         let data = await database.select(['title', 'description', 'label']).table('tasks')
-        res.send(data)
+        return res.send(data)
     }catch(err){
-        res.status(400).send(err)
+        return res.status(400).send(err)
     }
 })
 
@@ -21,13 +21,13 @@ router.get('/task/:id', async (req, res) =>{
         let id = req.params.id
         if(!isNaN(id)){
             let data = await database.select(['title', 'description', 'label']).where({id:id}).table('tasks')
-            res.send(data)
+            return res.send(data)
         }else{
-            res.status(400).send('Requisição inválida')
+            return res.status(400).send('Requisição inválida')
         }
 
     }catch(err){
-        res.status(400).send('Requisição inválida')
+        return res.status(400).send('Requisição inválida')
     }
 })
 
@@ -37,11 +37,10 @@ router.get('/task/label/:label', async (req, res) =>{
     try{
         let label = req.params.label
         let data = await database.select(['title', 'description', 'label']).where({label:label}).table('tasks')
-        res.send(data)
-        res.status(400).send('Requisição inválida')
+        return res.send(data)
         }
     catch(err){
-        res.status(400).send('Requisição inválida')
+        return res.status(400).send('Requisição inválida')
     }
 })
 
@@ -53,9 +52,9 @@ router.post('/task', async(req, res) =>{
         let {title, description, label,user_id} = req.body
         let slug = slugify(label)
         let data = await database.insert({title, description, label:slug,user_id}).table('tasks')
-        res.send(data)
+        return res.send(data)
     }catch(err){
-        res.send(err)
+        return res.send(err)
     }
 
 })
@@ -66,12 +65,12 @@ router.delete('/task/:id', async (req, res) =>{
         let id = req.params.id
         if(!isNaN(id)){
             await database.delete().where({id:id}).table('tasks')
-            res.send('Usúario deletado com sucesso')
+            return res.send('Usúario deletado com sucesso')
         }else{
-            res.status(400).send('Requisição inválida')
+            return res.status(400).send('Requisição inválida')
         }
     }catch(err){
-        res.status(400).send('Requisição inválida')
+        return res.status(400).send('Requisição inválida')
     }
 })
 
@@ -79,27 +78,30 @@ router.delete('/task/:id', async (req, res) =>{
 router.put('/task/:id', async (req, res) =>{
     try{
         let id = req.params.id
-        if(!isNaN(id)){
-            let {title, description, label} = req.body
-            if(title != undefined){
-                await database.where({id:id}).update({title: title}).table('tasks')
-                res.send('atualizado')
+        let existId = await database.select().table('tasks').where({id:id})
+        if(existId.length > 0){
+            if(!isNaN(id)){
+                let {title, description, label} = req.body
+                if(title != undefined){
+                    await database.where({id:id}).update({title: title}).table('tasks')
+                }
+                if(description != undefined){
+                    await database.where({id:id}).update({description: description}).table('tasks')
+                }
+                if(label != undefined){
+                    let slug = slugify(label)
+                    await database.where({id:id}).update({label: slug}).table('tasks')
+                }
+                return res.send('Atualizado')
+            }else{
+                return res.status(400).send('Requisição inválida')
             }
-            if(description != undefined){
-                await database.where({id:id}).update({description: description}).table('tasks')
-                res.send('atualizado')
-            }
-            /*
-            if(label != undefined){
-                let slug = slugify(label)
-                await database.where({id:id}).update({label: slug}).table('tasks')
-                res.send('atualizado')
-            }*/
         }else{
-            res.status(400).send('Requisição inválida')
+            return res.status(404).send('Id não encontrado')
         }
+
     }catch(err){
-        res.status(400).send('Requisição inválida')
+        return res.status(400).send('Requisição inválida')
     }
 })
 

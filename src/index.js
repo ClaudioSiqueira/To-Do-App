@@ -7,6 +7,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
 require('./controllers/TaskController')(app)
+require('./controllers/UserController')(app)
 
 app.get('/', (req, res) =>{
     res.send('teste')
