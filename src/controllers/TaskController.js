@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
+const slugify = require("slugify")
 const database = require('../database/database')
 
 
+// Select all tasks
 router.get('/tasks', async (req, res) =>{
     try{
         let data = await database.select(['title', 'description', 'label']).table('tasks')
@@ -13,6 +15,7 @@ router.get('/tasks', async (req, res) =>{
     }
 })
 
+// Select one taks by id
 router.get('/task/:id', async (req, res) =>{
     try{
         let id = req.params.id
@@ -29,11 +32,27 @@ router.get('/task/:id', async (req, res) =>{
 })
 
 
+// Select all tasks by label
+router.get('/task/label/:label', async (req, res) =>{
+    try{
+        let label = req.params.label
+        let data = await database.select(['title', 'description', 'label']).where({label:label}).table('tasks')
+        res.send(data)
+        res.status(400).send('Requisição inválida')
+        }
+    catch(err){
+        res.status(400).send('Requisição inválida')
+    }
+})
 
+
+
+// Create a task
 router.post('/task', async(req, res) =>{
     try{
         let {title, description, label,user_id} = req.body
-        let data = await database.insert({title, description, label,user_id}).table('tasks')
+        let slug = slugify(label)
+        let data = await database.insert({title, description, label:slug,user_id}).table('tasks')
         res.send(data)
     }catch(err){
         res.send(err)
@@ -41,6 +60,7 @@ router.post('/task', async(req, res) =>{
 
 })
 
+// Delete a task
 router.delete('/task/:id', async (req, res) =>{
     try{
         let id = req.params.id
@@ -55,6 +75,7 @@ router.delete('/task/:id', async (req, res) =>{
     }
 })
 
+// Edit a task
 router.put('/task/:id', async (req, res) =>{
     try{
         let id = req.params.id
@@ -68,6 +89,12 @@ router.put('/task/:id', async (req, res) =>{
                 await database.where({id:id}).update({description: description}).table('tasks')
                 res.send('atualizado')
             }
+            /*
+            if(label != undefined){
+                let slug = slugify(label)
+                await database.where({id:id}).update({label: slug}).table('tasks')
+                res.send('atualizado')
+            }*/
         }else{
             res.status(400).send('Requisição inválida')
         }
