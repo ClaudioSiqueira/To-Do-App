@@ -3,10 +3,10 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 const slugify = require("slugify")
 const database = require('../database/database')
-
+const middleware = require('../middleware/middleware')
 
 // Select all tasks
-router.get('/tasks', async (req, res) =>{
+router.get('/tasks',middleware, async (req, res) =>{
     try{
         let data = await database.select(['title', 'description', 'label']).table('tasks')
         return res.send(data)
@@ -16,7 +16,7 @@ router.get('/tasks', async (req, res) =>{
 })
 
 // Select one taks by id
-router.get('/task/:id', async (req, res) =>{
+router.get('/task/:id',middleware,  async (req, res) =>{
     try{
         let id = req.params.id
         if(!isNaN(id)){
@@ -33,7 +33,7 @@ router.get('/task/:id', async (req, res) =>{
 
 
 // Select all tasks by label
-router.get('/task/label/:label', async (req, res) =>{
+router.get('/task/label/:label', middleware, async (req, res) =>{
     try{
         let label = req.params.label
         let data = await database.select(['title', 'description', 'label']).where({label:label}).table('tasks')
@@ -47,7 +47,7 @@ router.get('/task/label/:label', async (req, res) =>{
 
 
 // Create a task
-router.post('/task', async(req, res) =>{
+router.post('/task', middleware, async(req, res) =>{
     try{
         let {title, description, label,user_id} = req.body
         let slug = slugify(label)
@@ -60,7 +60,7 @@ router.post('/task', async(req, res) =>{
 })
 
 // Delete a task
-router.delete('/task/:id', async (req, res) =>{
+router.delete('/task/:id',middleware,  async (req, res) =>{
     try{
         let id = req.params.id
         if(!isNaN(id)){
@@ -75,7 +75,7 @@ router.delete('/task/:id', async (req, res) =>{
 })
 
 // Edit a task
-router.put('/task/:id', async (req, res) =>{
+router.put('/task/:id',middleware,  async (req, res) =>{
     try{
         let id = req.params.id
         let existId = await database.select().table('tasks').where({id:id})

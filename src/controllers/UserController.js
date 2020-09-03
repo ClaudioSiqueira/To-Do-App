@@ -17,7 +17,7 @@ router.post('/', async (req, res) =>{
             let data = await database.insert({name, email, password: hash}).table('users')
             let user = await database.select().table('users').where({email:email})
             user = user[0]
-            secret = 'cbipxusgp923ioasdn3290wdsae'
+            let secret = 'cbipxusgp923ioasdn3290wdsae'
             let token = jwt.sign({id: user.id},secret, {
                 expiresIn:86400
             })
@@ -44,6 +44,7 @@ router.post('/authenticate', async (req, res) =>{
         }
         if(await bcrypt.compareSync(password, user[0].password)){
             user[0].password = undefined
+            user = user[0]
             secret = 'cbipxusgp923ioasdn3290wdsae'
             let token = jwt.sign({id: user.id},secret, {
                 expiresIn:86400
