@@ -22,7 +22,30 @@ router.post('/', async (req, res) =>{
     }else{
         return res.status(400).send({err: "Dados faltando"})
     }
-    
+})
+
+router.post('/authenticate', async (req, res) =>{
+    try{
+        let {email, password} = req.body
+        if(email == undefined || password == undefined){
+            return res.status(400).send({err: 'Dados faltando'})
+        }
+        let user = await database.select().table('users').where({email:email})
+        if(user.length == 0){
+            return res.status(404).send('Usuário não encontrado')
+        }
+        if(await bcrypt.compareSync(password, user[0].password)){
+            user[0].password = undefined
+            return res.send(user)
+        }else{
+            return res.status(401).send({err: 'Senha errada'})
+        }
+        
+        
+    }catch(err){
+        return res.send(err)
+    }
+
 })
 
 
