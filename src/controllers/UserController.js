@@ -3,6 +3,7 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 const database = require('../database/database')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 router.post('/', async (req, res) =>{
     let {name, email, password} = req.body
@@ -14,9 +15,16 @@ router.post('/', async (req, res) =>{
             }
             let hash = bcrypt.hashSync(password, 10)
             let data = await database.insert({name, email, password: hash}).table('users')
-            return res.send(data)
+            let user = await database.select().table('users').where({email:email})
+            user = user[0]
+            secret = 'cbipxusgp923ioasdn3290wdsae'
+            let token = jwt.sign({id: user.id},secret, {
+                expiresIn:86400
+            })
+            res.send({user: user, token: token})
+            
         }catch(err){
-            return res.status(500).send({err: 'Erro interno'})
+            return res.status(500).send({err: err})
         }
 
     }else{
@@ -36,7 +44,11 @@ router.post('/authenticate', async (req, res) =>{
         }
         if(await bcrypt.compareSync(password, user[0].password)){
             user[0].password = undefined
-            return res.send(user)
+            secret = 'cbipxusgp923ioasdn3290wdsae'
+            let token = jwt.sign({id: user.id},secret, {
+                expiresIn:86400
+            })
+            return res.send({user, token})
         }else{
             return res.status(401).send({err: 'Senha errada'})
         }
