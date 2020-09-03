@@ -8,7 +8,7 @@ const middleware = require('../middleware/middleware')
 // Select all tasks
 router.get('/tasks',middleware, async (req, res) =>{
     try{
-        let data = await database.select(['title', 'description', 'label']).table('tasks')
+        let data = await database.select(['title', 'description', 'label']).table('tasks').where({user_id: req.userId})
         return res.send(data)
     }catch(err){
         return res.status(400).send(err)
@@ -20,7 +20,7 @@ router.get('/task/:id',middleware,  async (req, res) =>{
     try{
         let id = req.params.id
         if(!isNaN(id)){
-            let data = await database.select(['title', 'description', 'label']).where({id:id}).table('tasks')
+            let data = await database.select(['title', 'description', 'label']).where({id:id, user_id: req.userId}).table('tasks')
             return res.send(data)
         }else{
             return res.status(400).send('Requisição inválida')
@@ -36,7 +36,7 @@ router.get('/task/:id',middleware,  async (req, res) =>{
 router.get('/task/label/:label', middleware, async (req, res) =>{
     try{
         let label = req.params.label
-        let data = await database.select(['title', 'description', 'label']).where({label:label}).table('tasks')
+        let data = await database.select(['title', 'description', 'label']).where({label:label, user_id: req.userId}).table('tasks')
         return res.send(data)
         }
     catch(err){
@@ -51,7 +51,7 @@ router.post('/task', middleware, async(req, res) =>{
     try{
         let {title, description, label,user_id} = req.body
         let slug = slugify(label)
-        let data = await database.insert({title, description, label:slug,user_id}).table('tasks')
+        let data = await database.insert({title, description, label:slug,user_id, user_id: req.userId}).table('tasks')
         return res.send(data)
     }catch(err){
         return res.send(err)
@@ -64,7 +64,7 @@ router.delete('/task/:id',middleware,  async (req, res) =>{
     try{
         let id = req.params.id
         if(!isNaN(id)){
-            await database.delete().where({id:id}).table('tasks')
+            await database.delete().where({id:id, user_id: req.userId}).table('tasks')
             return res.send('Usúario deletado com sucesso')
         }else{
             return res.status(400).send('Requisição inválida')
@@ -78,7 +78,7 @@ router.delete('/task/:id',middleware,  async (req, res) =>{
 router.put('/task/:id',middleware,  async (req, res) =>{
     try{
         let id = req.params.id
-        let existId = await database.select().table('tasks').where({id:id})
+        let existId = await database.select().table('tasks').where({id:id, user_id: req.userId})
         if(existId.length > 0){
             if(!isNaN(id)){
                 let {title, description, label} = req.body
