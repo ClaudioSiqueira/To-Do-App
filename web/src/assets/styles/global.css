@@ -1,5 +1,11 @@
 :root {
   font-size: 50%;
+
+  --color-green: #00A650;
+  --color-white: #F7FFF7;
+  --color-black: #202020;
+
+  --color-green-hover: #00b95a;
 }
 
 * {
@@ -16,6 +22,10 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 code {

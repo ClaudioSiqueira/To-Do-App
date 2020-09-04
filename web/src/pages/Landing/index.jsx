@@ -1,16 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import PageHeader from '../../components/PageHeader';
+
 import './styles.css';
 
 function Landing() {
   return (
-    <div id="landing-container">
-      <main className="content">
-        <h1>Sua nova ferramenta de To Do</h1>
-        <p>Organize suas tarefas e aumente sua produtividade</p>
-        <Link to="/signIn" className="signIn">Entar</Link>
-        <Link to="/signUp" className="signUp">Cadastre-se</Link>
+    <div className="landing-container">
+      <PageHeader />
+      <main>
+        <div className="content">
+          <h1>All your tasks in a single place</h1>
+          <Link to="/signIn" className="get-started">Get started</Link>
+        </div>
+
+        <div className="image-container">
+
+        </div>
       </main>
     </div>
   );

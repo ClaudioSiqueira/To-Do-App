@@ -1,22 +1,90 @@
 #header-container {
   width: 100%;
-  position: absolute;
-  top: 0;
 }
 
 #header-container header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4rem 6rem;
+  padding: 4rem 3rem 6rem;
 }
 
 #header-container header a {
+  font-size: 1.8rem;
   text-decoration: none;
-  color: orange;
-  font-weight: bold;
+  color: #202020;
+}
+#header-container header a b {
+  color: var(--color-green);
 }
 
 #header-container header a:hover {
-  text-decoration: underline;
+  color: #585858;
+}
+#header-container header a b:hover {
+  color: var(--color-green-hover);
+}
+
+.landing-container nav {
+  display: none;
+}
+
+.landing-container ul {
+  display: flex;
+  list-style: none;
+}
+
+.landing-container li:not(:last-child) {
+  margin-right: 6rem;
+  list-style: none;
+}
+
+#header-container .hamburguer ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  transition: all 0.2s ease;
+}
+
+#header-container .hamburguer li:not(:last-child) {
+  padding-bottom: 0.5rem;
+}
+
+.top,
+.middle,
+.bottom {
+  display: flex;
+  width: 2.5rem;
+  border-top: 2px solid #202020;
+  border-top-right-radius: 0.1rem;
+  border-top-left-radius: 0.1rem;
+}
+
+.middle {
+  width: 2rem;
+}
+
+.bottom {
+  width: 2.2rem;
+}
+
+#header-container .hamburguer ul:hover {
+  opacity: 0.6;
+}
+
+@media (min-width: 501px) {
+  #header-container header {
+    padding: 4rem 10rem 6rem;
+  }
+}
+
+@media (min-width:1100px) {
+  .landing-container nav {
+    display: flex;
+  }
+
+  .landing-container .hamburguer {
+    display: none;
+  }
 }
