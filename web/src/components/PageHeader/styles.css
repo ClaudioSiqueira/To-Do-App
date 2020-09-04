@@ -1,0 +1,22 @@
+#header-container {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+#header-container header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 6rem;
+}
+
+#header-container header a {
+  text-decoration: none;
+  color: orange;
+  font-weight: bold;
+}
+
+#header-container header a:hover {
+  text-decoration: underline;
+}
