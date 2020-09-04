@@ -1,0 +1,35 @@
+.card-container article {
+  max-width: 40rem;
+  margin: 0 auto 2rem;
+  border-radius: 1rem;
+  padding: 3rem 4rem;
+  background: #f3f3f3;
+}
+
+.card-container article:first-child {
+  transform: translateY(-20%);
+}
+
+.card-container article h2 {
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.card-container article footer {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.card-container article footer p {
+  display: flex;
+}
+
+.card-container article footer p::before {
+  content: '';
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: red;
+  margin-right: 1rem;
+}

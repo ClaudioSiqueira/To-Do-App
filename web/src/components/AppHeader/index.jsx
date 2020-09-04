@@ -4,15 +4,15 @@ import './styles.css';
 
 function AppHeader() {
   return (
-    <header id="container">
+    <header className="container">
       <div className="content">
         <h2>Oi, Pedro!</h2>
         <p>Você tem 6 tarefas hoje</p>
 
         <section className="filters">
-          <a href="#" className="all">Todos</a>
-          <a href="#">Faculdade</a>
-          <a href="#">Trabalho</a>
+          <a href="#" className="all filter">Todos</a>
+          <a href="#" className="filter">Faculdade</a>
+          <a href="#" className="filter">Trabalho</a>
         </section>
       </div>
     </header>

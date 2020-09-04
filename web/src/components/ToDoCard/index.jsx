@@ -4,8 +4,17 @@ import './styles.css';
 
 function ToDoCard() {
   return (
-    <div id="container">
-      <h2>To Do Card</h2>
+    <div className="card-container">
+      <article>
+        <header>
+          <h2>Exercícios de Estrutura de Dados I</h2>
+          <p>5 exercícios sobre vetores, matrizes e ponteiros em C++</p>
+        </header>
+        
+        <footer>
+          <p>Mackenzie</p>
+        </footer>
+      </article>
     </div>
   );
 }
