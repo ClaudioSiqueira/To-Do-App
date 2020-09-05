@@ -1,0 +1,75 @@
+.form-block {
+  width: 70%;
+  margin: 3rem auto;
+  color: var(--color-black);
+}
+
+.form-block form a {
+  display: flex;
+  color: var(--color-black);
+  justify-content: flex-end;
+  transition: 0.2s;
+}
+
+.form-block form a:hover {
+  opacity: 0.8;
+}
+
+.form-block button,
+.form-block .secondary-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+  border: 1px solid var(--color-border-green);
+  border-radius: 0.2rem;
+  background: var(--color-green);
+  margin: 3rem 0;
+  font: bold 1.8rem Montserrat;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.form-block .secondary-button {
+  border-color: var(--color-border-grey);
+  background: none;
+  font-weight: 500;
+  color: var(--color-black);
+}
+
+.form-block button:hover {
+  background: var(--color-green-hover);
+}
+
+.form-block form span {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.form-block form span::before,
+.form-block form span::after {
+  content: '';
+  position: absolute;
+  transform: translateX(-70%);
+  width: 15rem;
+  border-bottom: 1px solid var(--color-border-grey);
+  padding-top: 1rem;
+}
+
+.form-block form span::after {
+  transform: translateX(70%);
+}
+
+@media (min-width: 700px) {
+  .form-block {
+    max-width: 45rem;
+    margin: 6rem 12rem;
+  }
+
+  .form-block form h2 {
+    text-align: left;
+  }
+}

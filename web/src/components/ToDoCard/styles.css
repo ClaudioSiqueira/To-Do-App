@@ -1,35 +1,71 @@
 .card-container article {
-  max-width: 40rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0 auto 2rem;
-  border-radius: 1rem;
-  padding: 3rem 4rem;
-  background: #f3f3f3;
+  padding: 3rem 6rem;
 }
 
-.card-container article:first-child {
-  transform: translateY(-20%);
+.card-container .task-content {
+  display: flex;
+  align-items: center;
+}
+
+.card-container .type {
+  display: flex;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--color-green);
+  margin-right: 2rem;
 }
 
 .card-container article h2 {
   font-size: 2rem;
+  font-weight: 500;
   padding-bottom: 1rem;
 }
 
-.card-container article footer {
-  display: flex;
-  align-items: center;
-  margin-top: 2rem;
-}
-
-.card-container article footer p {
+.card-container .actions {
   display: flex;
 }
 
-.card-container article footer p::before {
-  content: '';
+.card-container .check {
+  display: flex;
   width: 2rem;
   height: 2rem;
-  border-radius: 50%;
-  background: red;
-  margin-right: 1rem;
+  border: 2.5px solid rgb(145, 139, 139);
+  border-radius: 0.2rem;
+  margin-right: 4rem;
+}
+
+.card-container .check::before {
+  content: 'check';
+  margin-top: -2.5rem;
+  margin-left: -1.2rem;
+  font-size: 1.4rem;
+  color: rgb(160, 158, 158);
+  font-weight: 600;
+}
+
+.card-container .check:hover {
+  border-color: #ccc;
+}
+
+.card-container span {
+  font-weight: bold;
+  cursor: pointer;
+  color: rgb(121, 121, 121);
+}
+
+.card-container span:hover {
+  opacity: 0.7;
+}
+
+@media (min-width: 501px) {
+  .card-container article {
+    width: 50%;
+    margin: 0 auto;
+    padding-left: 5rem;
+  }
 }

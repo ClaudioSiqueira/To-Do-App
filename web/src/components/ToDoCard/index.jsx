@@ -2,18 +2,22 @@ import React from 'react';
 
 import './styles.css';
 
-function ToDoCard() {
+function ToDoCard(props) {
   return (
     <div className="card-container">
       <article>
-        <header>
-          <h2>Exercícios de Estrutura de Dados I</h2>
-          <p>5 exercícios sobre vetores, matrizes e ponteiros em C++</p>
-        </header>
-        
-        <footer>
-          <p>Mackenzie</p>
-        </footer>
+        <div className="task-content">
+          <div className="type"></div>
+          <div className="text">
+            <h2>{props.title}</h2>
+            <p>{props.type}</p>
+          </div>
+        </div>
+
+        <div className="actions">
+          <div className="check"></div>
+          <span>more</span>
+        </div>
       </article>
     </div>
   );

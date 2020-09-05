@@ -1,26 +1,33 @@
 .container {
   width: 100%;
-  height: 34rem;
-  background: orange;
+  height: 25rem;
+  background: linear-gradient(143.53deg, #FFFFFF -76.42%, rgba(255, 255, 255, 0) 79.24%), #19A952;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  margin-bottom: 2rem;
+  padding: 0 2rem;
+  color: #202020;
 }
 
 .container .content {
-  width: 80%;
-  margin: 0 auto;
+  width: 90%;
+  margin: auto;
+}
+
+.container .content .text {
+  display: flex;
+  align-items: center;
 }
 
 .container .content h2 {
   font-size: 3.8rem;
   color: #F7FFF7;
-  margin-bottom: 1.4rem;
 }
 
 .container .content p {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  margin-left: 2rem;
   color: #F7FFF7;
 }
 
@@ -47,4 +54,27 @@
 .filters a.all {
   background: #F7FFF7;
   color: #000;
+}
+
+@media (min-width: 501px) {
+  .container .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container .content .text {
+    display: block;
+    text-align: center;
+  }
+
+  .container .content p {
+    font-size: 2rem;
+    margin: 0;
+    padding-top: 1rem;
+  }
+
+  .filters {
+    width: 90%;
+  }
 }
