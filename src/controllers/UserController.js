@@ -17,6 +17,7 @@ router.post('/', async (req, res) =>{
             let data = await database.insert({name, email, password: hash}).table('users')
             let user = await database.select().table('users').where({email:email})
             user = user[0]
+            user.password = undefined
             let secret = 'cbipxusgp923ioasdn3290wdsae'
             let token = jwt.sign({id: user.id},secret, {
                 expiresIn:86400
