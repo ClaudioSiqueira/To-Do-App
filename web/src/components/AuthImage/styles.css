@@ -1,0 +1,19 @@
+.auth-image main {
+  display: flex;
+  justify-content: center;
+}
+
+.auth-image .content img {height: 30rem;}
+
+@media (min-width: 1000px) {
+  .auth-image .content {
+    flex-direction: row;
+    width: 80%;
+    margin: auto;
+    justify-content: center;
+  }
+
+  .auth-image .content img {
+    height: 65rem;
+  }
+}

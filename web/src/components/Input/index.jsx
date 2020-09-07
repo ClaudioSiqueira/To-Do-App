@@ -1,14 +1,17 @@
 import React from 'react';
+
 import './styles.css';
 
-function InputBlock({id, placeholder}) {
+function InputBlock(props) {
+  var { id, image, ...rest } = props;
+
   return (
     <div className="input-block">
-      <i/>
+      <i style={{backgroundImage: `url(${image})`}}/>
       <input 
         id={id}
         type={id}
-        placeholder={placeholder}
+        {...rest}
       />
     </div>
   );

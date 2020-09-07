@@ -20,6 +20,10 @@
   margin-right: 2rem;
 }
 
+.card-container .text {
+  max-width: 30rem;
+}
+
 .card-container article h2 {
   font-size: 2rem;
   font-weight: 500;
@@ -67,5 +71,9 @@
     width: 50%;
     margin: 0 auto;
     padding-left: 5rem;
+  }
+
+  .card-container .text {
+    max-width: 60rem;
   }
 }

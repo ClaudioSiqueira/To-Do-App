@@ -14,6 +14,7 @@
 
   --color-green-hover: #00b95a;
   --color-blue-hover: #05a4bd;
+  --color-black-hover: #585858;
 
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
@@ -45,8 +46,51 @@ code {
 
 a {
   text-decoration: none;
+  color: var(--color-black);
+  transition: 0.2s;
 }
 
-b {
-  color: var(--color-green);
+a:hover {color: var(--color-black-hover);}
+
+b {color: var(--color-green);}
+b:hover {color: var(--color-green-hover);}
+
+ul {
+  display: flex;
+  list-style: none;
+}
+
+.button,
+.secondary-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16rem;
+  height: 5rem;
+  background: var(--color-green);
+  border: 1px solid var(--color-border-green);
+  box-sizing: border-box;
+  border-radius: 4px;
+  font: bold 1.8rem Montserrat;
+  font-weight: bold;
+  font-size: 1.8rem;
+  letter-spacing: 0.025em;
+  color: var(--color-white);
+  outline: none;
+  transition: 0.2s;
+}
+
+.button:hover {
+  background: var(--color-green-hover);
+  color: var(--color-white);
+}
+
+.secondary-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: var(--color-border-grey);
+  background: none;
+  font-weight: 500;
+  color: var(--color-black);
 }

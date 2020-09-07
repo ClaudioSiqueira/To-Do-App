@@ -14,7 +14,17 @@
   box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
+.input-block i {
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 1.8rem;
+  height: 1.8rem;
+  position: absolute;
+  margin-left: 1rem;
+  transform: translateY(2.5rem);
+}
+
 .input-block input:focus {
-  color: var(--color-green);
   border-bottom: 2px solid var(--color-green);
 }

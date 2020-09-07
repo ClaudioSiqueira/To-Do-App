@@ -1,3 +1,52 @@
+.landing-container header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 3rem 6rem;
+}
+
+.landing-container header a {
+  font-size: 1.8rem;
+}
+
+.landing-container nav {display: none;}
+
+.landing-container nav li:not(:last-child) {
+  margin-right: 6rem;
+}
+
+.landing-container .hamburguer ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  transition: all 0.2s ease;
+}
+
+.landing-container .hamburguer li:not(:last-child) {
+  padding-bottom: 0.5rem;
+}
+
+.top,
+.middle,
+.bottom {
+  display: flex;
+  width: 2.5rem;
+  border-top: 2px solid #202020;
+}
+
+.middle {
+  width: 2rem;
+}
+
+.bottom {
+  width: 2.2rem;
+}
+
+.landing-container .hamburguer ul:hover {
+  opacity: 0.6;
+}
+
 .landing-container {
   width: 100vw;
   height: 100vh;
@@ -21,43 +70,23 @@
   color: var(--color-black);
 }
 
-.landing-container .content a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 16rem;
-  height: 5rem;
-  background: var(--color-green);
-  border: 1px solid var(--color-border-green);
-  box-sizing: border-box;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 1.8rem;
-  line-height: 18px;
-  letter-spacing: 0.025em;
-  color: var(--color-white);
-  text-decoration: none;
-  transition: 0.2s;
-}
-
-.landing-container .content a:hover {
-  background: var(--color-green-hover);
-}
-
 .image-container {
   display: flex;
   width: 100%;
   height: 65rem;
   position: absolute;
   left: 0;
-  background-image: url('../../assets/images/landing-mobile.png');
+  background-image: url('../../assets/images/landing-mobile.png') no-repeat;
   background-position-x: center;
-  background-repeat: no-repeat;
   z-index: -1;
   transform: translateY(-5%);
 }
 
 @media (min-width: 501px) {
+  .landing-container header {
+    padding: 4rem 10rem 6rem;
+  }
+
   .landing-container .content h1 {
     font-size: 7.4rem;
     max-width: 54rem;
@@ -70,8 +99,12 @@
   }
 }
 
-@media (min-width: 1500px) {
-  .image-container {
-    background-size: cover;
+@media (min-width: 1100px) {
+  .landing-container nav {
+    display: flex;
+  }
+
+  .landing-container .hamburguer {
+    display: none;
   }
 }

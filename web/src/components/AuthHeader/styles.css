@@ -1,0 +1,35 @@
+.desktop {display: none;}
+
+.auth-header header {
+  padding-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+.auth-header header img:not(:last-child) {
+  position: absolute;
+  top: -15px;
+  left: -35px;
+  z-index: -1;
+}
+
+.auth-header header a {
+  padding-left: 3rem;
+}
+
+@media (min-width: 1000px) {
+  .mobile {display: none;}
+  .desktop {display: flex;}
+
+  .auth-header header {
+    width: 85%;
+    margin: 0 auto 4rem;
+    justify-content: space-between;
+  }
+
+  .auth-header header a {
+    padding: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-black);
+  }
+}

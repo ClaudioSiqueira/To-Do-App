@@ -2,19 +2,23 @@
   overflow-x: hidden;
 }
 
-.app-page h3 {
-  width: 50%;
+.app-page .toDo-block {
+  margin: 8rem 0;
+}
+
+.app-page .toDo-block h3 {
+  width: 80%;
   margin: 0 auto;
   font-size: 2.5rem;
-  margin-top: 8rem;
 }
 
 .app-page footer {
   position: fixed;
   width: 100%;
-  bottom: 30px;
+  bottom: 0;
+  padding-bottom: 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .app-page footer a {
@@ -24,6 +28,7 @@
   width: 6rem;
   height: 6rem;
   border-radius: 50%;
+  margin-right: 2rem;
   background: var(--color-blue-gradient);
   font-size: 4rem;
   font-weight: 500;
@@ -36,10 +41,9 @@
 }
 
 .form-create {
-  width: 50%;
+  width: 80%;
   min-height: 20rem;
   margin: 6rem auto
-  
 }
 
 .form-create header {
@@ -63,7 +67,7 @@
 }
 
 .form-create form input {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 4rem;
   transition: ease-out;
   padding: 0 2rem 1rem;
@@ -94,9 +98,15 @@
 }
 
 @media (min-width: 501px) {
+  .app-page .toDo-block h3 {width: 50%;}
+  .app-page .form-create {width: 50%}
+  .form-create form input {font-size: 2rem;}
+
   .app-page footer {
     width: 95%;
     margin: 0 auto;
     justify-content: flex-end;
   }
+
+  .app-page footer a {margin: 0;}
 }
