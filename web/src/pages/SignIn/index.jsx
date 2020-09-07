@@ -28,7 +28,7 @@ function SignIn() {
     } else {
       try {
         const response = await api.post('/user/authenticate', {email, password});
-        login(response.data.token);
+        login(response.data);
         history.push('/app');
       } catch (err) {
         alert("Credenciais inválidas");

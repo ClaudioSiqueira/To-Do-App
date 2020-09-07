@@ -97,6 +97,11 @@
   opacity: 0.8;
 }
 
+.app-page .tasks-list {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 @media (min-width: 501px) {
   .app-page .toDo-block h3 {width: 50%;}
   .app-page .form-create {width: 50%}

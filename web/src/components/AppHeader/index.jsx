@@ -3,11 +3,13 @@ import React from 'react';
 import './styles.css';
 
 function AppHeader() {
+  const name = localStorage.getItem('@ToDoApp-user');
+
   return (
     <header className="container">
       <div className="content">
         <div className="text">
-          <h2>Oi, Pedro!</h2>
+          <h2>E aí, {name}!</h2>
           <p>Você tem 6 tarefas hoje</p>
         </div>
         
