@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const secret = require('../../secret.json')
 
 module.exports = (req, res, next) =>{
     const authHeader = req.headers.authorization
@@ -13,8 +14,7 @@ module.exports = (req, res, next) =>{
     }
 
     const [scheme, token] = parts
-    let secret = 'cbipxusgp923ioasdn3290wdsae'
-    jwt.verify(token, secret, (err, decoded) =>{
+    jwt.verify(token, secret.secret, (err, decoded) =>{
         if (err)
             return res.status(401).send({err: "Token inválido"})
                     // decoded.id é o parametro que eu passo na hora de criar no jwt

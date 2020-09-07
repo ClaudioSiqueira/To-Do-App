@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const database = require('../database/database')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const secret = require('../../secret.json')
 
 router.post('/', async (req, res) =>{
     let {name, email, password} = req.body
@@ -18,8 +19,7 @@ router.post('/', async (req, res) =>{
             let user = await database.select().table('users').where({email:email})
             user = user[0]
             user.password = undefined
-            let secret = 'cbipxusgp923ioasdn3290wdsae'
-            let token = jwt.sign({id: user.id},secret, {
+            let token = jwt.sign({id: user.id},secret.secret, {
                 expiresIn:86400
             })
             res.send({user: user, token: token})
@@ -46,8 +46,7 @@ router.post('/authenticate', async (req, res) =>{
         if(await bcrypt.compareSync(password, user[0].password)){
             user[0].password = undefined
             user = user[0]
-            secret = 'cbipxusgp923ioasdn3290wdsae'
-            let token = jwt.sign({id: user.id},secret, {
+            let token = jwt.sign({id: user.id},secret.secret, {
                 expiresIn:86400
             })
             return res.send({user, token})
