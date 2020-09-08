@@ -32,6 +32,17 @@ router.get('/task/:id',middleware,  async (req, res) =>{
 })
 
 
+router.get('/tasks/lables', middleware,async (req, res) =>{
+    try{
+        let data = await database.select(['label']).table('tasks').where({user_id: req.userId})
+        res.send(data)
+    }catch(err){
+        return res.status(400).send('Requisição inválida')
+    }
+
+})
+
+
 // Select all tasks by label
 router.get('/task/label/:label', middleware, async (req, res) =>{
     try{
