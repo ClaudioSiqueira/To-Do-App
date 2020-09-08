@@ -8,7 +8,7 @@ const middleware = require('../middleware/middleware')
 // Select all tasks
 router.get('/tasks',middleware, async (req, res) =>{
     try{
-        let data = await database.select(['title', 'description', 'label']).table('tasks').where({user_id: req.userId})
+        let data = await database.select(['id','title', 'description', 'label']).table('tasks').where({user_id: req.userId})
         return res.send(data)
     }catch(err){
         return res.status(400).send(err)
@@ -20,7 +20,7 @@ router.get('/task/:id',middleware,  async (req, res) =>{
     try{
         let id = req.params.id
         if(!isNaN(id)){
-            let data = await database.select(['title', 'description', 'label']).where({id:id, user_id: req.userId}).table('tasks')
+            let data = await database.select(['id','title', 'description', 'label']).where({id:id, user_id: req.userId}).table('tasks')
             return res.send(data)
         }else{
             return res.status(400).send('Requisição inválida')
@@ -34,7 +34,7 @@ router.get('/task/:id',middleware,  async (req, res) =>{
 
 router.get('/tasks/lables', middleware,async (req, res) =>{
     try{
-        let data = await database.select(['label']).table('tasks').where({user_id: req.userId})
+        let data = await database.select(['id','label']).table('tasks').where({user_id: req.userId})
         res.send(data)
     }catch(err){
         return res.status(400).send('Requisição inválida')
@@ -47,7 +47,7 @@ router.get('/tasks/lables', middleware,async (req, res) =>{
 router.get('/task/label/:label', middleware, async (req, res) =>{
     try{
         let label = req.params.label
-        let data = await database.select(['title', 'description', 'label']).where({label:label, user_id: req.userId}).table('tasks')
+        let data = await database.select(['id','title', 'description', 'label']).where({label:label, user_id: req.userId}).table('tasks')
         return res.send(data)
         }
     catch(err){
