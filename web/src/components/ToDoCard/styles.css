@@ -56,13 +56,20 @@
   border-color: #ccc;
 }
 
-.card-container span {
-  font-weight: bold;
+.card-container button {
+  background: none;
+  border: none;
   cursor: pointer;
-  color: rgb(121, 121, 121);
+  margin: 0;
+  padding: 0;
+  outline: none;
 }
 
-.card-container span:hover {
+.card-container a img {
+  width: 2rem;
+}
+
+.card-container a:hover {
   opacity: 0.7;
 }
 

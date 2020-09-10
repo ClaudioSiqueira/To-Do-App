@@ -6,6 +6,7 @@ import AuthHeader from '../../components/AuthHeader';
 import Input from '../../components/Input';
 
 import blue from '../../assets/images/blue.svg';
+import user from '../../assets/images/user.svg';
 import mail from '../../assets/images/mail.svg';
 import lock from '../../assets/images/lock.svg';
 
@@ -50,7 +51,7 @@ function SignUp() {
             required
             id="name"
             placeholder="name"
-            image={mail}
+            image={user}
             value={name}
             onChange={(e) => { setName(e.target.value) }}
           />

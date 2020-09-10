@@ -1,8 +1,17 @@
 import React from 'react';
 
+import trash from '../../assets/images/trash.svg';
+
+import api from '../../services/api';
+
 import './styles.css';
 
 function ToDoCard(props) {
+
+/*   async function deleteTask(id) {
+    await api.delete(`/task/:id`);
+  } */
+
   return (
     <div className="card-container">
       <article>
@@ -16,7 +25,7 @@ function ToDoCard(props) {
 
         <div className="actions">
           <div className="check"></div>
-          <span>more</span>
+          <a ><img src={trash} alt="Ícone de uma lata de lixo, preto"/></a>
         </div>
       </article>
     </div>

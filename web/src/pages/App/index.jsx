@@ -2,18 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 import AppHeader from '../../components/AppHeader';
 import ToDoCard from '../../components/ToDoCard';
-import Input from '../../components/Input';
+import CreateTask from '../../components/CreateTask';
 
 import api from '../../services/api.js';
 
 import './styles.css';
 
 function App() {
-  const [id] = localStorage.getItem('@ToDoApp-data')
-
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-
+  const [id] = localStorage.getItem('@ToDoApp-data');
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -26,47 +22,15 @@ function App() {
     setTasks(response.data);
   }
 
-  // Adicionar tarefa
-  async function createNewTask(e) {
-    e.preventDefault();
-
-    await api.post('/task', {
-      title,
-      description,
-      label: 'Default'
-    })
-
-    setTitle('');
-    setDescription('');
+  function createTask() {
+    return true;   
   }
 
   return (
     <div id="start" className="app-page">
       <AppHeader />
 
-      <div className="form-create">
-        <header>
-          <h2>Create a task</h2>
-          <button>voltar</button>
-        </header>
-        <form onSubmit={createNewTask}>
-          <Input 
-            id="text" 
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)} 
-          />
-          <Input 
-            id="text" 
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)} 
-          />
-
-          <button type="submit">Create Task</button>
-        </form>
-      </div>
-
+      {createTask === true ? <CreateTask /> : null}
 
       <div className="toDo-block">
         <h3>Your Tasks</h3>
@@ -75,6 +39,7 @@ function App() {
           {tasks.map((task => (
             <div key={task.title} className="task-item">
               <ToDoCard 
+                id={task.id}
                 title={task.title}
                 type={task.label}
               />
@@ -84,10 +49,10 @@ function App() {
       </div>
       
       <footer>
-        <a onClick={createNewTask} href="#start">+</a>
+        <a onClick={createTask} href="#start">+</a>
       </footer>
     </div>
   );
-}
+};
 
 export default App;
