@@ -8,9 +8,9 @@ import './styles.css';
 
 function ToDoCard(props) {
 
-/*   async function deleteTask(id) {
-    await api.delete(`/task/:id`);
-  } */
+  async function deleteTask(id) {
+    await api.delete('/task/' + id);
+  }
 
   return (
     <div className="card-container">
@@ -19,13 +19,14 @@ function ToDoCard(props) {
           <div className="type"></div>
           <div className="text">
             <h2>{props.title}</h2>
-            <p>{props.type}</p>
+            <p>{props.description}</p>
+            <span>{props.type}</span>
           </div>
         </div>
 
         <div className="actions">
-          <div className="check"></div>
-          <a ><img src={trash} alt="Ícone de uma lata de lixo, preto"/></a>
+          {/* <div className="check"></div> */}
+          <button onClick={() => deleteTask(props.id)}><img src={trash} alt="Ícone de uma lata de lixo, preto"/></button>
         </div>
       </article>
     </div>

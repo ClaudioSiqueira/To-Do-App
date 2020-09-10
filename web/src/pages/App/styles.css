@@ -45,6 +45,45 @@
   flex-direction: column-reverse;
 }
 
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 90rem;
+  justify-content: center;
+  margin: 1rem 0;
+  transform: translateY(-200%);
+  width: 90%;
+  margin: auto;
+}
+
+.filter {
+  display: flex;
+  min-width: 8rem;
+  height: 4.5rem;
+  padding: 0 2rem;
+  margin: 0 1rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4rem;
+  background: rgba(109, 109, 109, 0.103);
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-white);
+  cursor: pointer;
+  outline: none;
+}
+
+.filter:hover {
+  color: var(--color-white);
+  opacity: 0.8;
+}
+
+.filters button.all {
+  background: #F7FFF7;
+  color: var(--color-black);
+}
+
 @media (min-width: 501px) {
   .app-page .toDo-block h3 {width: 50%;}
   .app-page .form-create {width: 50%}

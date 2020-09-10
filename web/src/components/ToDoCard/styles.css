@@ -24,6 +24,14 @@
   max-width: 30rem;
 }
 
+.card-container .text p {
+  padding-bottom: 2rem;
+}
+
+.card-container span {
+  text-transform: uppercase;
+}
+
 .card-container article h2 {
   font-size: 2rem;
   font-weight: 500;
@@ -65,11 +73,11 @@
   outline: none;
 }
 
-.card-container a img {
+.card-container button img {
   width: 2rem;
 }
 
-.card-container a:hover {
+.card-container button:hover {
   opacity: 0.7;
 }
 

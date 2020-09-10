@@ -1,7 +1,7 @@
 .form-create {
   width: 80%;
   min-height: 20rem;
-  margin: 6rem auto
+  margin: 1rem auto
 }
 
 .form-create header {
@@ -35,6 +35,18 @@
 .form-create form input:focus {
   border-bottom: 1px solid var(--color-black);
   color: var(--color-black);
+}
+
+.form-create form .task-data {
+  display: grid;
+  grid-template-columns: 2fr, 1fr;
+  grid-template-areas: "desc label";
+}
+
+.form-create form .task-data .description {
+  width: 90%;
+  margin-right: 20rem;
+  grid-area: desc;
 }
 
 .form-create form button {
