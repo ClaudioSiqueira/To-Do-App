@@ -35,7 +35,13 @@ router.get('/task/:id',middleware,  async (req, res) =>{
 router.get('/tasks/lables', middleware,async (req, res) =>{
     try{
         let data = await database.select(['id','label']).table('tasks').where({user_id: req.userId})
-        res.send(data)
+        let lables = []
+        for(let i = 0; i< data.length; i++){
+            if(lables.indexOf(data[i].label) == -1){
+                lables.push(data[i].label)
+            }
+        }
+        res.send(lables)
     }catch(err){
         return res.status(400).send('Requisição inválida')
     }
